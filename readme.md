@@ -187,3 +187,6 @@ Use a model-logging argument supported by your installed version.
 Three classification models are developed and evaluated using Decision Trees. MLflow records their parameters, accuracy metrics, and trained models, enabling comparisons between the two `max_depth` settings for each experiment.
 
 **Note:** The datasets are illustrative educational examples and should not be used for actual lending or employment decisions.
+
+GitHub 4 5 and 6
+https://chatgpt.com/share/6ae8b1f8-4700-83e8-81bf-06a18c5f41b9
