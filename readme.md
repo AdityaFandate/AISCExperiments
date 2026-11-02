@@ -190,3 +190,158 @@ Three classification models are developed and evaluated using Decision Trees. ML
 
 GitHub 4 5 and 6
 https://chatgpt.com/share/6ae8b1f8-4700-83e8-81bf-06a18c5f41b9
+
+# Docker Web Application – Build and Run a Docker Container
+
+## Aim
+
+To create a Dockerfile for a sample web application, build a Docker image, run the container, and test the application in a web browser.
+
+## Requirements
+
+- Docker Desktop
+- Visual Studio Code
+- Web Browser (Google Chrome)
+- Windows PowerShell
+
+## Project Structure
+
+```text
+Dockerdemo/
+│
+├── Dockerfile
+├── index.html
+└── README.md
+```
+
+## 1. Create a Sample Web Application
+
+Create a file named `index.html`.
+
+### index.html
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Docker Web Application</title>
+  </head>
+  <body>
+    <h1>Welcome to Docker!</h1>
+    <h2>My First Docker Container</h2>
+    <p>This web application is running inside a Docker container.</p>
+  </body>
+</html>
+```
+
+## 2. Create a Dockerfile
+
+Create a file named `Dockerfile` without any extension.
+
+### Dockerfile
+
+```dockerfile
+FROM nginx:latest
+
+COPY index.html /usr/share/nginx/html/index.html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+### Explanation
+
+- `FROM nginx:latest` – Uses the official Nginx image.
+- `COPY` – Copies the HTML file into the Nginx web directory.
+- `EXPOSE 80` – Specifies the container port.
+- `CMD` – Starts the Nginx web server.
+
+## 3. Build the Docker Image
+
+Open PowerShell inside the project directory and execute:
+
+```bash
+docker build -t my-web-app .
+```
+
+This command builds a Docker image named `my-web-app`.
+
+## 4. Verify the Docker Image
+
+```bash
+docker images
+```
+
+This command displays all available Docker images.
+
+## 5. Run the Docker Container
+
+```bash
+docker run -d -p 8080:80 --name my-container my-web-app
+```
+
+### Explanation
+
+- `-d` – Runs the container in the background.
+- `-p 8080:80` – Maps host port 8080 to container port 80.
+- `--name` – Assigns a name to the container.
+- `my-web-app` – Specifies the Docker image.
+
+## 6. Check Running Containers
+
+```bash
+docker ps
+```
+
+This command displays all currently running containers.
+
+## 7. Test the Application in a Web Browser
+
+Open Google Chrome and enter:
+
+```text
+http://localhost:8080
+```
+
+Expected output:
+
+```text
+Welcome to Docker!
+
+My First Docker Container
+
+This web application is running
+inside a Docker container.
+```
+
+## 8. Stop the Docker Container
+
+```bash
+docker stop my-container
+```
+
+To remove the container:
+
+```bash
+docker rm my-container
+```
+
+## Commands Summary
+
+| Command                                                   | Description              |
+| --------------------------------------------------------- | ------------------------ |
+| `docker build -t my-web-app .`                            | Builds Docker image      |
+| `docker images`                                           | Lists Docker images      |
+| `docker run -d -p 8080:80 --name my-container my-web-app` | Runs container           |
+| `docker ps`                                               | Lists running containers |
+| `docker stop my-container`                                | Stops container          |
+| `docker rm my-container`                                  | Removes container        |
+
+## Result
+
+Successfully created a Dockerfile, built a Docker image, and executed the sample web application inside a Docker container. The application was tested successfully using a web browser at `http://localhost:8080`.
+
+## Conclusion
+
+Docker helps package applications and their dependencies into containers. It makes applications easier to build, deploy, and run consistently across different environments.
